@@ -1,40 +1,42 @@
-/*242. Valid Anagram
-Easy
-Given two strings s and t, return true if t is an 
-anagram
- of s, and false otherwise.
- */
+/*
+[Easy]
+242. Valid Anagram
 
- /**
- * @param {string} s
- * @param {string} t
- * @return {boolean}
- */
-var isAnagram = function(s, t) {
-    if(s.length !== t.length)
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+url: https://leetcode.com/problems/valid-anagram/description/
+*/
+
+/**
+* @param {string} s
+* @param {string} t
+* @return {boolean}
+*/
+var isAnagram = function (s, t) {
+    if (s.length !== t.length)
         return false;
 
-    const hashS = new Map(),
-          hashT = new Map();
+    const hashS = new Map(), hashT = new Map();
     // 計算s 字母分類, 數量
-    for(let i=0;i<s.length;i++){
-        let c1 = s[i];        
-        if(hashS.has(c1)){
+    for (let i = 0; i < s.length; i++) {
+        let c1 = s[i];
+        if (hashS.has(c1)) {
             hashS.set(c1, hashS.get(c1) + 1);
-        }else{
+        } else {
             hashS.set(c1, 1);
         }
 
         let c2 = t[i];
-        if(hashT.has(c2)){
+        if (hashT.has(c2)) {
             hashT.set(c2, hashT.get(c2) + 1);
-        }else{
+        } else {
             hashT.set(c2, 1);
         }
     }
-    
+
+    // 比較s, t字母分類, 數量
     for (var key of hashS.keys()) {
-        if(hashS.get(key) !== hashT.get(key))
+        if (hashS.get(key) !== hashT.get(key))
             return false;
     }
     return true;
@@ -43,18 +45,18 @@ var isAnagram = function(s, t) {
 // Ref 1st
 
 /*
-var isAnagram = function(s, t) {
-    if(s.length !== t.length) return false;
-  let str1Map = new Array(26).fill(0);
-  let str2Map = new Array(26).fill(0)
-  for(let i=0; i<s.length; i++){
-    str1Map[s[i].charCodeAt() - 97]++
-    str2Map[t[i].charCodeAt() - 97]++
-  }
-  for(let i=0; i<str1Map.length; i++){
-    if(str1Map[i] !== str2Map[i]) return false
-  }
-  return true
+const sort = (str) => str.split('').sort().join('')
+var isAnagram = function (s, t) {
+    if (s.length !== t.length) {
+        return false;
+    }
+
+    const count = new Array(26).fill(0);
+    for (let i = 0; i < s.length; i++) {
+        count[s.charCodeAt(i) - 'a'.charCodeAt(0)]++;
+        count[t.charCodeAt(i) - 'a'.charCodeAt(0)]--;
+    }
+    return count.every(val => val === 0);
 };
  */
 

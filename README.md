@@ -1,2 +1,3 @@
 # leeCode
-learn &amp; test
+
+Learn Code Alg. with JavsScript

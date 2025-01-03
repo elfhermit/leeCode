@@ -5,57 +5,34 @@ Medium
 Given an array of strings strs, group the anagrams together. 
 You can return the answer in any order.
 
-
-Example 1:
-
-Input: strs = ["eat","tea","tan","ate","nat","bat"]
-
-Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
-
-Explanation:
-
-There is no string in strs that can be rearranged to form "bat".
-The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
-The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
-Example 2:
-
-Input: strs = [""]
-
-Output: [[""]]
-
-Example 3:
-
-Input: strs = ["a"]
-
-Output: [["a"]]
-
+url: https://leetcode.com/problems/group-anagrams/description/
  */
 
 /**
  * @param {string[]} strs
  * @return {string[][]}
  */
-var groupAnagrams = function(strs) {
-    
-    let array=[];
+var groupAnagrams = function (strs) {
+
+    let array = [];
     let hasSave = false;
 
-    for(let i=0; i<strs.length; i++){
-        for(let m=0; m<array.length; m++){
-            if(isAnagram(strs[i],array[m][0])){
+    for (let i = 0; i < strs.length; i++) {
+        for (let m = 0; m < array.length; m++) {
+            if (isAnagram(strs[i], array[m][0])) {
                 array[m].push(strs[i]);
-                hasSave=true;
+                hasSave = true;
             }
         }
-        if(!hasSave){
+        if (!hasSave) {
             array.push([strs[i]]);
         }
-        hasSave=false;
-    }    
+        hasSave = false;
+    }
     return array;
 };
 
-var isAnagram = function(s, t) {
+var isAnagram = function (s, t) {
     if (s.length !== t.length)
         return false;
 
@@ -83,7 +60,29 @@ var isAnagram = function(s, t) {
 };
 
 /*
-// Ref 1st
+// Ref 1st  思路把每個字母轉成質數，相乘得到一個 key，這樣就可以判斷是否為 anagram
+var groupAnagrams = function (strs) {
+    const prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41];
+    prime.push(43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101);
+
+    const hashTable = new Map();
+    for (let i = 0; i < strs.length; i++) {
+        const string = strs[i];
+        let key = 1;
+        for (let s = 0; s < string.length; s++) {
+            key *= prime[string.charCodeAt(s) - 97]
+        }
+        if (hashTable.has(key)) {
+            hashTable.get(key).push(strs[i]);
+        } else {
+            hashTable.set(key, [strs[i]]);
+        }
+    }
+
+    return Array.from(hashTable.values());
+};
+
+// Ref 2nd
 var groupAnagrams = function(strs) {
     const hashMap = new Map();
 
