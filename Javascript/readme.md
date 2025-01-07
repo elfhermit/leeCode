@@ -14,3 +14,5 @@ List:
 
 [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/description/)
 [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+[238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+[36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/description/)
