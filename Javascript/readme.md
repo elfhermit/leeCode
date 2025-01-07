@@ -16,3 +16,4 @@ List:
 [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
 [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/description/)
+[128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
